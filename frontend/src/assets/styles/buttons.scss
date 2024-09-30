@@ -1,0 +1,14 @@
+.btn {
+  background-color: $light-blue;
+  box-shadow: 0px 4px 4px 0px #00000040;
+  border: none;
+  width: 200px;
+  padding: 20px 0px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.1s;
+
+  &:hover {
+    background-color: $light-blue-darker;
+  }
+}
