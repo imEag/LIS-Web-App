@@ -1,9 +1,14 @@
+<script setup>
+import PageContainer from "@/components/PageContainer.vue";
+</script>
+
 <template>
-  <div class="home">
-    <h1>Home page</h1>
-  </div>
+  <PageContainer>
+    <div class="home">
+      <h1>Home page</h1>
+    </div>
+  </PageContainer>
 </template>
 
 <style>
-
 </style>
