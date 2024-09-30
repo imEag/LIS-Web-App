@@ -1,9 +1,15 @@
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
+import PageContainer from "@/components/PageContainer.vue";
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+  <PageContainer>
+    <div class="home">
+      <h1>Home page</h1>
+    </div>
+  </PageContainer>
 </template>
+
+<style lang="scss" scoped>
+
+</style>
