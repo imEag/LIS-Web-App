@@ -6,7 +6,7 @@ import {RouterView} from 'vue-router'
   <RouterView/>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "@/assets/styles/main.scss";
 
 </style>

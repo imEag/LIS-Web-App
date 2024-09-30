@@ -10,5 +10,6 @@ import PageContainer from "@/components/PageContainer.vue";
   </PageContainer>
 </template>
 
-<style>
+<style lang="scss" scoped>
+
 </style>

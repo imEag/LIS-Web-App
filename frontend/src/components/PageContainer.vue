@@ -1,11 +1,15 @@
 <script setup lang="ts">
 import Header from "@/components/AppHeader.vue";
 import Footer from "@/components/AppFooter.vue";
+import BannerFull from "@/components/Banner/BannerFull.vue";
 </script>
 
 <template>
   <div class="page-container">
-    <Header/>
+    <div>
+      <Header/>
+      <BannerFull/>
+    </div>
     <main class="main-content">
       <slot/>
     </main>
@@ -24,7 +28,8 @@ div.page-container {
 }
 
 main {
-
+  justify-self: flex-start;
+  height: 100%;
 }
 
 </style>
