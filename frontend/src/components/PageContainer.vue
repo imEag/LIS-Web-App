@@ -27,8 +27,7 @@ div.page-container {
   min-height: 100vh;
 }
 
-main {
-  justify-self: flex-start;
+.main-content {
   height: 100%;
 }
 
