@@ -39,10 +39,9 @@ import imageSrc from '@/assets/images/image1.png';
     width: 100%;
 
     img {
-      width: 138px;
+      height: 100px;
       margin: 0 10px;
     }
-
 
     .line:first-child {
       width: 30%;

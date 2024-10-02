@@ -1,0 +1,10 @@
+.input {
+  background-color: $white;
+  box-shadow: 0 4px 4px 0 #00000040;
+  border: none;
+  width: 200px;
+  padding: 20px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.1s;
+}

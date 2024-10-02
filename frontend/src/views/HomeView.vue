@@ -8,10 +8,10 @@ import phoneImgSrc from '@/assets/images/phoneWithMessageBubble.png';
     <div class="home">
       <div class="menu">
         <h1>Bienvenido</h1>
-        <router-link to="/paciente">
+        <router-link to="/paciente-login">
           <button class="btn">Paciente</button>
         </router-link>
-        <router-link to="/especialista">
+        <router-link to="/especialista-login">
           <button class="btn">Especialista</button>
         </router-link>
       </div>

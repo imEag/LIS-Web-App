@@ -11,4 +11,12 @@
   &:hover {
     background-color: $light-blue-darker;
   }
+
+  &.btn-primary {
+    background-color: $teal-blue;
+  }
+
+  &.btn-secondary {
+    background-color: $pale-blue;
+  }
 }
