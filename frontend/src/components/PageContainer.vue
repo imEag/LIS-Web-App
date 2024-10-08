@@ -7,6 +7,7 @@ import BannerFull from "@/components/Banner/BannerFull.vue";
 <template>
   <div class="page-container">
     <div>
+    Lu
       <Header/>
       <BannerFull/>
     </div>
