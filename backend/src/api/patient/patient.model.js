@@ -7,10 +7,12 @@ const PatientSchema = new mongoose.Schema({
     firstName: {
       type: String,
       required: true,
+      trim: true,
     },
     lastName: {
       type: String,
       required: true,
+      trim: true,
     },
     age: {
       type: Number,
@@ -21,24 +23,31 @@ const PatientSchema = new mongoose.Schema({
       required: true,
       enum: ['M', 'F'],
     },
-    LegalID: {
+    legalID: {
       type: String,
       required: true,
-      Unique: true,
+      unique: true,
+      trim: true,
     },
     id: {
       type: Number,
-      required: true,
-      Unique: true,
+      unique: true,
     },
   },
   {
     timestamps: true,
+    versionKey: false,
   });
 
-// Generate a consecutive id for each new patient, and capitalize the first letter of the first and last name
 PatientSchema.pre('save', async function(next) {
-  const count = this.countDocuments();
+  const exists = await Patient.findOne({ legalID: this.legalID });
+  if (exists) {
+    const error = new Error('Patient already exists');
+    error.statusCode = 409;
+    return next(error);
+  }
+
+  const count = await Patient.countDocuments();
   this.id = count + 1;
   this.firstName = capitalizeSentence(this.firstName);
   this.lastName = capitalizeSentence(this.lastName);
@@ -46,4 +55,25 @@ PatientSchema.pre('save', async function(next) {
   next();
 });
 
-module.exports = mongoose.model(NAME_SCHEMA, PatientSchema);
+PatientSchema.pre('findOneAndUpdate', function(next) {
+  const update = this.getUpdate();
+  if (update.firstName) {
+    update.firstName = capitalizeSentence(update.firstName);
+  }
+  if (update.lastName) {
+    update.lastName = capitalizeSentence(update.lastName);
+  }
+
+  // _id, __v, createdAt, updatedAt, id are not allowed to be updated
+  delete update._id;
+  delete update.__v;
+  delete update.createdAt;
+  delete update.updatedAt;
+  delete update.id;
+
+  next();
+});
+
+const Patient = mongoose.model(NAME_SCHEMA, PatientSchema);
+
+module.exports = Patient;

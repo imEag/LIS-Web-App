@@ -1,25 +1,25 @@
 const {
-  getPatients,
-  createPatient,
-  updatePatient,
-  deletePatient,
-} = require('./patient.service');
+  getResults,
+  createResult,
+  updateResult,
+  deleteResult,
+} = require('./result.service');
 
-async function getAllPatientsHandler(req, res, next) {
+async function getAllResultsHandler(req, res, next) {
   try {
-    const patients = await getPatients();
+    const results = await getResults();
     res.status(200).json(
-      { patients },
+      { results },
     );
   } catch (error) {
     next(error);
   }
 }
 
-async function createPatientHandler(req, res, next) {
+async function createResultHandler(req, res, next) {
   const { body } = req;
 
-  const requiredFields = ['firstName', 'lastName', 'age', 'gender', 'legalID'];
+  const requiredFields = ['CHOLT', 'TRIG', 'HDL', 'LDL', 'patient'];
 
   const missingFields = requiredFields.filter((field) => !body[field]);
   if (missingFields.length) {
@@ -29,17 +29,17 @@ async function createPatientHandler(req, res, next) {
   }
 
   try {
-    const newPatient = await createPatient(body);
+    const newResult = await createResult(body);
     res.status(200).json({
       msg: 'Successfully created',
-      patient: newPatient,
+      result: newResult,
     });
   } catch (error) {
     next(error);
   }
 }
 
-async function updatePatientHandler(req, res, next) {
+async function updateResultHandler(req, res, next) {
   const { body } = req;
   const { id } = req.params;
 
@@ -50,23 +50,23 @@ async function updatePatientHandler(req, res, next) {
   }
 
   try {
-    const updatedPatient = await updatePatient(id, body);
-    if (!updatedPatient) {
-      const error = new Error('Patient not found');
+    const updatedResult = await updateResult(id, body);
+    if (!updatedResult) {
+      const error = new Error('Result not found');
       error.statusCode = 404;
       return next(error);
     }
 
     res.status(200).json({
       msg: 'Successfully updated',
-      patient: updatedPatient,
+      result: updatedResult,
     });
   } catch (error) {
     next(error);
   }
 }
 
-async function deletePatientHandler(req, res, next) {
+async function deleteResultHandler(req, res, next) {
   const { id } = req.params;
 
   if (!id) {
@@ -76,16 +76,16 @@ async function deletePatientHandler(req, res, next) {
   }
 
   try {
-    const deletedPatient = await deletePatient(id);
-    if (!deletedPatient) {
-      const error = new Error('Patient not found');
+    const deletedResult = await deleteResult(id);
+    if (!deletedResult) {
+      const error = new Error('Result not found');
       error.statusCode = 404;
       return next(error);
     }
 
     res.status(200).json({
       msg: 'Successfully deleted',
-      patient: deletedPatient,
+      result: deletedResult,
     });
   } catch (error) {
     next(error);
@@ -93,8 +93,8 @@ async function deletePatientHandler(req, res, next) {
 }
 
 module.exports = {
-  getAllPatientsHandler,
-  createPatientHandler,
-  updatePatientHandler,
-  deletePatientHandler,
+  getAllResultsHandler,
+  createResultHandler,
+  updateResultHandler,
+  deleteResultHandler,
 };

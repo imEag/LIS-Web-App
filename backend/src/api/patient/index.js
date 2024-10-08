@@ -1,17 +1,17 @@
 const {
-  getAllPatients,
-  createPatient,
-  updatePatient,
-  deletePatient,
+  getAllPatientsHandler,
+  createPatientHandler,
+  updatePatientHandler,
+  deletePatientHandler,
 } = require('./patient.controller');
 
 const { Router } = require('express');
 
 const router = Router();
 
-router.get('/', getAllPatients);
-router.post('/', createPatient);
-router.put('/:id', updatePatient);
-router.delete('/:id', deletePatient);
+router.get('/', getAllPatientsHandler);
+router.post('/', createPatientHandler);
+router.put('/:id', updatePatientHandler);
+router.delete('/:id', deletePatientHandler);
 
 module.exports = router;
