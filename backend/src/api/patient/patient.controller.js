@@ -18,17 +18,17 @@ async function getAllPatientsHandler(req, res, next) {
 }
 
 async function getPatientHandler(req, res, next) {
-  const { id } = req.params;
+  const { legalId } = req.params;
 
-  if (!id) {
+  if (!legalId) {
     const error = new Error('Missing required id');
     error.statusCode = 400;
     return next(error);
   }
 
   try {
-    const patients = await getPatientWithResults(id);
-    res.status(200).json({ patients });
+    const patient = await getPatientWithResults(legalId);
+    res.status(200).json({ patient });
   } catch (error) {
     next(error);
   }
