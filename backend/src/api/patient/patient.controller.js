@@ -1,5 +1,6 @@
 const {
   getPatients,
+  getPatientWithResults,
   createPatient,
   updatePatient,
   deletePatient,
@@ -11,6 +12,23 @@ async function getAllPatientsHandler(req, res, next) {
     res.status(200).json(
       { patients },
     );
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function getPatientHandler(req, res, next) {
+  const { id } = req.params;
+
+  if (!id) {
+    const error = new Error('Missing required id');
+    error.statusCode = 400;
+    return next(error);
+  }
+
+  try {
+    const patients = await getPatientWithResults(id);
+    res.status(200).json({ patients });
   } catch (error) {
     next(error);
   }
@@ -94,6 +112,7 @@ async function deletePatientHandler(req, res, next) {
 
 module.exports = {
   getAllPatientsHandler,
+  getPatientHandler,
   createPatientHandler,
   updatePatientHandler,
   deletePatientHandler,
