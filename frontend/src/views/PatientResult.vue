@@ -1,9 +1,9 @@
 <script setup>
-import { ref, onMounted } from 'vue';
-import { useRoute } from 'vue-router';
+import {ref, onMounted} from 'vue';
+import {useRoute} from 'vue-router';
 import PageContainer from "@/components/PageContainer.vue";
 import imgSrc from '@/assets/images/Result_PatientResult.png';
-import { getAllResultsHandler, getPatientHandler } from "@/services/api.js";
+import {getPatientHandler} from "@/services/api.js";
 
 const route = useRoute();
 const patientData = ref({
@@ -30,11 +30,11 @@ const error = ref(null);
 async function fetchPatientData() {
   isLoading.value = true;
   error.value = null;
-  
+
   try {
     // Obtener el ID del paciente de la ruta o del estado del router
     const patientId = route.params.legalId || localStorage.getItem('currentPatientId');
-    
+
     if (!patientId) {
       throw new Error('No se encontró ID del paciente');
     }
@@ -43,14 +43,10 @@ async function fetchPatientData() {
     const patientResponse = await getPatientHandler(patientId);
     const patientInfo = patientResponse.data.patient;
 
-    // Luego obtener los resultados
-    const resultsResponse = await getAllResultsHandler();
-    const results = resultsResponse.results;
-
     // Combinar la información
     patientData.value = {
       personalInfo: {
-        id: patientInfo._id || '',
+        id: patientInfo.id || '',
         documento: patientInfo.legalID || '',
         nombre: patientInfo.firstName || '',
         apellido: patientInfo.lastName || '',
@@ -58,10 +54,10 @@ async function fetchPatientData() {
         genero: patientInfo.gender || ''
       },
       lipidProfile: {
-        cholt: results.cholt || '',
-        hdl: results.hdl || '',
-        ldl: results.ldl || '',
-        trig: results.trig || ''
+        cholt: patientInfo.results[0]?.CHOLT || '',
+        hdl: patientInfo.results[0]?.HDL || '',
+        ldl: patientInfo.results[0]?.LDL || '',
+        trig: patientInfo.results[0]?.TRIG || ''
       }
     };
   } catch (err) {
@@ -87,43 +83,43 @@ onMounted(() => {
           <h2>Datos personales:</h2>
           <table class="table">
             <thead>
-              <tr>
-                <th>ID</th>
-                <th>Documento</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Edad</th>
-                <th>Género</th>
-              </tr>
+            <tr>
+              <th>ID</th>
+              <th>Documento</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Edad</th>
+              <th>Género</th>
+            </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>{{ patientData.personalInfo.id }}</td>
-                <td>{{ patientData.personalInfo.documento }}</td>
-                <td>{{ patientData.personalInfo.nombre }}</td>
-                <td>{{ patientData.personalInfo.apellido }}</td>
-                <td>{{ patientData.personalInfo.edad }}</td>
-                <td>{{ patientData.personalInfo.genero }}</td>
-              </tr>
+            <tr>
+              <td>{{ patientData.personalInfo.id }}</td>
+              <td>{{ patientData.personalInfo.documento }}</td>
+              <td>{{ patientData.personalInfo.nombre }}</td>
+              <td>{{ patientData.personalInfo.apellido }}</td>
+              <td>{{ patientData.personalInfo.edad }}</td>
+              <td>{{ patientData.personalInfo.genero }}</td>
+            </tr>
             </tbody>
           </table>
           <h2>Resultados de perfil lipídico:</h2>
           <table class="table2">
             <thead>
-              <tr>
-                <th>CHOLT</th>
-                <th>HDL</th>
-                <th>LDL</th>
-                <th>TRIG</th>
-              </tr>
+            <tr>
+              <th>CHOLT</th>
+              <th>HDL</th>
+              <th>LDL</th>
+              <th>TRIG</th>
+            </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>{{ patientData.lipidProfile.cholt }}</td>
-                <td>{{ patientData.lipidProfile.hdl }}</td>
-                <td>{{ patientData.lipidProfile.ldl }}</td>
-                <td>{{ patientData.lipidProfile.trig }}</td>
-              </tr>
+            <tr>
+              <td>{{ patientData.lipidProfile.cholt }}</td>
+              <td>{{ patientData.lipidProfile.hdl }}</td>
+              <td>{{ patientData.lipidProfile.ldl }}</td>
+              <td>{{ patientData.lipidProfile.trig }}</td>
+            </tr>
             </tbody>
           </table>
           <router-link to="/">
@@ -134,7 +130,7 @@ onMounted(() => {
       </div>
     </div>
   </PageContainer>
- </template>
+</template>
 
 <style lang="scss" scoped>
 @import "@/assets/styles/main.scss";
