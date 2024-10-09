@@ -11,20 +11,20 @@ const message = ref(''); // Propiedad para el mensaje
 
 const checkPatient = async () => {
   console.log('Verificando paciente con ID:', legalID.value);
-
-  // Validar que el ID no esté vacío
   if (!legalID.value || legalID.value.trim() === '') {
     message.value = 'Por favor, ingresa un número de cédula válido.';
     return;
   }
-
   try {
     const response = await getPatientHandler(legalID.value);
     console.log('Respuesta de la API:', response);
-
     if (response && response.data.patient) {
-      console.log('ID del paciente:', response.data.patient._id);
-      router.push({ name: 'paciente result' });
+      // Guardar el ID en localStorage o pasarlo como parámetro de ruta
+      localStorage.setItem('currentPatientId', legalID.value);
+      router.push({ 
+        name: 'paciente result',
+        params: { legalId: legalID.value }
+      });
     } else {
       message.value = 'Paciente no encontrado.';
     }

@@ -9,7 +9,16 @@ export const createResult = (result) => {
 }
 
 export const getPatientHandler = (legalId) => {
-    // Incluye el legalId en la URL de la solicitud
+    
     return axios.get(`/patients/${legalId}`);
   }
 
+  export const getAllResultsHandler = async () => {
+    try {
+        const response = await axios.get('/results');
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching results:', error);
+        throw error; 
+    }
+}
