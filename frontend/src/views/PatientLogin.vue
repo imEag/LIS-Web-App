@@ -10,7 +10,7 @@ import imgSrc from '@/assets/images/image3.png';
       <div class="menu">
         <h1>Inicio de sesión</h1>
         <input placeholder="Número de cédula" id="patient-cedula" class="input patient-cedula">
-        <router-link to="/paciente">
+        <router-link to="/paciente-result">
           <button class="btn btn-primary">Ingresar</button>
         </router-link>
         <router-link to="/">
