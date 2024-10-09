@@ -11,7 +11,7 @@ import phoneImgSrc from '@/assets/images/image4_SelectSpecialist.png';
         <router-link to="/consulta">
           <button class="btn btn-primary">Consulta</button>
         </router-link>
-        <router-link to="/New-Pacient">
+        <router-link to="/nuevo-paciente">
           <button class="btn btn-third">Nuevo Paciente</button>
         </router-link>
         <router-link to="/especialista-login">
