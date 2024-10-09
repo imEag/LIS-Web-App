@@ -20,16 +20,36 @@ async function getAllPatientsHandler(req, res, next) {
 async function getPatientHandler(req, res, next) {
   const { legalId } = req.params;
 
-  if (!legalId) {
-    const error = new Error('Missing required id');
-    error.statusCode = 400;
+  // Validar que el ID esté presente y que sea un string no vacío
+  if (!legalId || typeof legalId !== 'string' || legalId.trim() === '') {
+    const error = new Error('El ID es requerido y debe ser un string no vacío.');
+    error.statusCode = 400; // Bad Request
     return next(error);
   }
 
   try {
+    // Llama a la función que obtiene al paciente junto con sus resultados
     const patient = await getPatientWithResults(legalId);
+
+    // Verificar si se encontró un paciente
+    if (!patient) {
+      const error = new Error(`No se encontró un paciente con el ID ${legalId}.`);
+      error.statusCode = 404; // Not Found
+      return next(error);
+    }
+
+    // Responder con los datos del paciente si se encontró
     res.status(200).json({ patient });
   } catch (error) {
+    // Registro adicional del error para depuración
+    console.error('Error al obtener el paciente:', error);
+    
+    // Si el error no tiene un código de estado, lo configuramos a 500 (Error interno del servidor)
+    if (!error.statusCode) {
+      error.statusCode = 500;
+    }
+    
+    // Pasamos el error al middleware de manejo de errores
     next(error);
   }
 }
