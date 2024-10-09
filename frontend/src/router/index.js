@@ -35,9 +35,9 @@ const router = createRouter({
             component: NewPatient
         },
         {
-          path: '/paciente-result',
-          name: 'paciente result',
-          component: PatientResult
+            path: '/paciente-result/:legalId',
+            name: 'paciente result',
+            component: () => import('@/views/PatientResult.vue')
         }
     ]
 })

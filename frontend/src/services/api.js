@@ -8,5 +8,6 @@ export const createResult = (result) => {
     return axios.post('/results', result);
 }
 
-
-
+export const getPatientHandler = (legalId) => {
+    return axios.get(`/patients/${legalId}`);
+}
