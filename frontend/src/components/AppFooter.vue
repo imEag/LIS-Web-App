@@ -2,7 +2,7 @@
   <footer>
     <div>
       <p class="footer-text">
-        Alma Mater
+        Hospital Alma Mater
       </p>
     </div>
   </footer>

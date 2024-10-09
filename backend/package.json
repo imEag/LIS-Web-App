@@ -1,0 +1,36 @@
+{
+  "name": "lims-backend",
+  "version": "1.0.0",
+  "description": "Backend app RESTful API for LIMS",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node ./src/server.js",
+    "dev": "node --watch ./src/server.js",
+    "format": "prettier --write src/**/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:imEag/LIS-Web-App.git"
+  },
+  "keywords": [
+    "Node",
+    "Express",
+    "LIMS"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "mongoose": "^8.7.0",
+    "morgan": "^1.10.0",
+    "pino": "^9.4.0",
+    "pino-colada": "^2.2.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7",
+    "prettier": "^3.3.3"
+  }
+}
