@@ -52,9 +52,7 @@ A web-based Laboratory Information Management System (LIMS) specifically designe
 
 ### Additional Libraries & Tools
 - 📡 Axios for HTTP requests
-- 🔒 JWT for authentication
-- 📊 Chart.js for data visualization
-- 📱 React Query for server state management
+
 
 ## Project Structure
 ![Logo del proyecto](./frontend/src/assets/images/estructura.jpg)
@@ -157,7 +155,7 @@ Where new patient information is entered into the system.
 Specialists can input lipid profile test results for patients here.
 
 ### 4. Patient Records View
-![Patient Records](./frontend/src/assets/images/resultados.png)
+![Patient Records](./frontend/src/assets/images/consulta.png)
 A comprehensive view of all patient records for specialists.
 
 ### 5. Add a new patient 
