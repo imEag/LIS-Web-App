@@ -2,6 +2,7 @@ import {createRouter, createWebHistory} from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import PatientLogin from '@/views/PatientLogin.vue'
 import SpecialistLogin from '@/views/SpecialistLogin.vue'
+import SpecialistConsult from '@/views/SpecialistConsult.vue'
 import SpecialistSelect from '@/views/SpecialistSelect.vue'
 import NewPatient from "@/views/NewPatient.vue";
 
@@ -22,6 +23,11 @@ const router = createRouter({
             path: '/especialista-login',
             name: 'especialista login',
             component: SpecialistLogin
+        },
+        {
+            path: '/Consulta',
+            name: 'Consulta',
+            component: SpecialistConsult
         },
         {
             path: '/especialista-select',
