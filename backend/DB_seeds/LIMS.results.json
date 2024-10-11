@@ -1,0 +1,72 @@
+[{
+  "_id": {
+    "$oid": "6709b70efcb6d7b4a12dad41"
+  },
+  "CHOLT": "9",
+  "TRIG": "12",
+  "HDL": "25",
+  "LDL": "36",
+  "patient": {
+    "$oid": "6709b70efcb6d7b4a12dad3d"
+  },
+  "createdAt": {
+    "$date": "2024-10-11T23:38:54.658Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-11T23:38:54.658Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6709b7c7fcb6d7b4a12dad60"
+  },
+  "CHOLT": "5",
+  "TRIG": "3",
+  "HDL": "42",
+  "LDL": "12",
+  "patient": {
+    "$oid": "6709b7c7fcb6d7b4a12dad5c"
+  },
+  "createdAt": {
+    "$date": "2024-10-11T23:41:59.993Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-11T23:41:59.993Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6709b90da83d0857b2d5a87e"
+  },
+  "CHOLT": "13",
+  "TRIG": "43",
+  "HDL": "23",
+  "LDL": "33",
+  "patient": {
+    "$oid": "6709b90da83d0857b2d5a87a"
+  },
+  "createdAt": {
+    "$date": "2024-10-11T23:47:25.139Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-11T23:47:25.139Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6709b972a83d0857b2d5a895"
+  },
+  "CHOLT": "11",
+  "TRIG": "42",
+  "HDL": "22",
+  "LDL": "33",
+  "patient": {
+    "$oid": "6709b972a83d0857b2d5a891"
+  },
+  "createdAt": {
+    "$date": "2024-10-11T23:49:06.246Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-11T23:49:06.246Z"
+  }
+}]

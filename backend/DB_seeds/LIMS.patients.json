@@ -1,0 +1,68 @@
+[{
+  "_id": {
+    "$oid": "6709b70efcb6d7b4a12dad3d"
+  },
+  "firstName": "Diego",
+  "lastName": "Garcia",
+  "age": 48,
+  "gender": "M",
+  "legalID": "71453987",
+  "createdAt": {
+    "$date": "2024-10-11T23:38:54.636Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-11T23:38:54.636Z"
+  },
+  "id": 2
+},
+{
+  "_id": {
+    "$oid": "6709b7c7fcb6d7b4a12dad5c"
+  },
+  "firstName": "Andrea",
+  "lastName": "Giraldo",
+  "age": 34,
+  "gender": "F",
+  "legalID": "43987645",
+  "createdAt": {
+    "$date": "2024-10-11T23:41:59.978Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-11T23:41:59.978Z"
+  },
+  "id": 3
+},
+{
+  "_id": {
+    "$oid": "6709b90da83d0857b2d5a87a"
+  },
+  "firstName": "Juan Andres",
+  "lastName": "Herrera",
+  "age": 22,
+  "gender": "M",
+  "legalID": "4325431234",
+  "createdAt": {
+    "$date": "2024-10-11T23:47:25.117Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-11T23:48:12.423Z"
+  },
+  "id": 5
+},
+{
+  "_id": {
+    "$oid": "6709b972a83d0857b2d5a891"
+  },
+  "firstName": "Emmanuel",
+  "lastName": "Garces",
+  "age": 35,
+  "gender": "M",
+  "legalID": "76523456",
+  "createdAt": {
+    "$date": "2024-10-11T23:49:06.230Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-11T23:49:06.230Z"
+  },
+  "id": 6
+}]
