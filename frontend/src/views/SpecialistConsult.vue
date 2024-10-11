@@ -1,26 +1,71 @@
 <script setup>
+import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 import PageContainer from "@/components/PageContainer.vue";
-import imgSrc from '@/assets/images/image5_SpecialistLogin.png';
+import { getAllPatients, deletePatient, getPatient } from "@/services/api.js";
 
-// Datos de los pacientes
-const patients = [
-  { id: "001", document: "1007240356", firstName: "Luisa Fernanda", lastName: "Salazar" },
-  { id: "002", document: "1007240356", firstName: "Luisa Fernanda", lastName: "Salazar" },
-  { id: "003", document: "1007240356", firstName: "Luisa Fernanda", lastName: "Salazar" },
-  { id: "004", document: "1007240356", firstName: "Luisa Fernanda", lastName: "Salazar" },
-  { id: "005", document: "1007240356", firstName: "Luisa Fernanda", lastName: "Salazar" },
-  { id: "006", document: "1007240356", firstName: "Luisa Fernanda", lastName: "Salazar" },
-  { id: "007", document: "1007240356", firstName: "Luisa Fernanda", lastName: "Salazar" }
-];
+const router = useRouter();
+const patients = ref([]);
+const isLoading = ref(true);
+const error = ref(null);
+
+// Fetch patients from the database
+const fetchPatients = async () => {
+  try {
+    isLoading.value = true;
+    const response = await getAllPatients();
+    patients.value = response.data.patients;
+  } catch (err) {
+    console.error('Error fetching patients:', err);
+    error.value = err.response?.data?.message || 'Failed to load patients. Please try again.';
+  } finally {
+    isLoading.value = false;
+  }
+};
+
+// Handle view patient action
+const viewPatient = async (legalId) => {
+  try {
+    const response = await getPatient(legalId);
+    // Assuming you have a route to display patient details
+    router.push({ name: 'PatientDetails', params: { id: legalId }, state: { patient: response.data.patient } });
+  } catch (err) {
+    console.error('Error fetching patient details:', err);
+    error.value = err.response?.data?.message || 'Failed to load patient details. Please try again.';
+  }
+};
+
+// Handle update patient action
+const handleUpdatePatient = (legalId) => {
+  router.push(`/update-patient/${legalId}`);
+};
+
+// Handle delete patient action
+const handleDeletePatient = async (legalId) => {
+  if (confirm('Are you sure you want to delete this patient?')) {
+    try {
+      await deletePatient(legalId);
+      await fetchPatients(); // Refresh the list after deletion
+    } catch (err) {
+      console.error('Error deleting patient:', err);
+      error.value = err.response?.data?.message || 'Failed to delete patient. Please try again.';
+    }
+  }
+};
+
+// Fetch patients when the component is mounted
+onMounted(fetchPatients);
 </script>
 
 <template>
   <PageContainer>
     <div class="patient-list">
-      <table>
+      <h1>LIMS - Patient List</h1>
+      <div v-if="isLoading">Loading patients...</div>
+      <div v-else-if="error">{{ error }}</div>
+      <table v-else>
         <thead>
           <tr>
-            <th>ID</th>
             <th>Documento</th>
             <th>Nombre</th>
             <th>Apellido</th>
@@ -28,15 +73,14 @@ const patients = [
           </tr>
         </thead>
         <tbody>
-          <tr v-for="patient in patients" :key="patient.id">
-            <td>{{ patient.id }}</td>
-            <td>{{ patient.document }}</td>
+          <tr v-for="patient in patients" :key="patient.legalID">
+            <td>{{ patient.legalID }}</td> <!-- Mostrar solo el Documento -->
             <td>{{ patient.firstName }}</td>
             <td>{{ patient.lastName }}</td>
             <td>
-              <button class="action-btn view">🔍</button>
-              <button class="action-btn update">🔄</button>
-              <button class="action-btn delete">❌</button>
+              <button class="action-btn view" @click="viewPatient(patient.legalID)">🔍</button>
+              <button class="action-btn update" @click="handleUpdatePatient(patient.legalID)">🔄</button>
+              <button class="action-btn delete" @click="handleDeletePatient(patient.legalID)">❌</button>
             </td>
           </tr>
         </tbody>
