@@ -15,3 +15,7 @@ export const getPatientHandler = (legalId) => {
 export const updatePatient = (id, patientDataToUpdate) => {
     return axios.put(`/patients/${id}`, patientDataToUpdate);
 }
+
+export const authenticateDoctor = (user, password) => {
+    return axios.post('/doctors', {user, password});
+}
