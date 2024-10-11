@@ -4,7 +4,6 @@ import PatientLogin from '@/views/PatientLogin.vue'
 import SpecialistLogin from '@/views/SpecialistLogin.vue'
 import SpecialistSelect from '@/views/SpecialistSelect.vue'
 import NewPatient from "@/views/NewPatient.vue";
-import PatientResult from '@/views/PatientResult.vue'
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -38,6 +37,11 @@ const router = createRouter({
             path: '/paciente-result/:legalId',
             name: 'paciente result',
             component: () => import('@/views/PatientResult.vue')
+        },
+        {
+            path: '/paciente-perfil/:legalId',
+            name: 'paciente perfil',
+            component: () => import('@/views/PatientProfile.vue')
         }
     ]
 })

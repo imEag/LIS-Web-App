@@ -11,3 +11,7 @@ export const createResult = (result) => {
 export const getPatientHandler = (legalId) => {
     return axios.get(`/patients/${legalId}`);
 }
+
+export const updatePatient = (id, patientDataToUpdate) => {
+    return axios.put(`/patients/${id}`, patientDataToUpdate);
+}
