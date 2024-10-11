@@ -58,7 +58,7 @@ onMounted(fetchPatients);
 <template>
   <PageContainer>
     <div class="patient-list">
-      <h1>LIMS - Patient List</h1>
+      <h1>Lista de pacientes</h1>
       <div v-if="isLoading">Loading patients...</div>
       <div v-else-if="error">{{ error }}</div>
       <table v-else>
