@@ -1,8 +1,8 @@
 <script setup>
-import { ref, onMounted } from 'vue';
-import { useRouter } from 'vue-router';
+import {ref, onMounted} from 'vue';
+import {useRouter} from 'vue-router';
 import PageContainer from "@/components/PageContainer.vue";
-import { getAllPatients, deletePatient, getPatient } from "@/services/api.js";
+import {getAllPatients, deletePatient,} from "@/services/api.js";
 
 const router = useRouter();
 const patients = ref([]);
@@ -26,9 +26,7 @@ const fetchPatients = async () => {
 // Handle view patient action
 const viewPatient = async (legalId) => {
   try {
-    const response = await getPatient(legalId);
-    // Assuming you have a route to display patient details
-    router.push({ name: 'PatientDetails', params: { id: legalId }, state: { patient: response.data.patient } });
+    router.push(`/paciente-perfil/${legalId}`);
   } catch (err) {
     console.error('Error fetching patient details:', err);
     error.value = err.response?.data?.message || 'Failed to load patient details. Please try again.';
@@ -37,14 +35,14 @@ const viewPatient = async (legalId) => {
 
 // Handle update patient action
 const handleUpdatePatient = (legalId) => {
-  router.push(`/update-patient/${legalId}`);
+  router.push(`/paciente-perfil/${legalId}`);
 };
 
 // Handle delete patient action
-const handleDeletePatient = async (legalId) => {
+const handleDeletePatient = async (id) => {
   if (confirm('Are you sure you want to delete this patient?')) {
     try {
-      await deletePatient(legalId);
+      await deletePatient(id);
       await fetchPatients(); // Refresh the list after deletion
     } catch (err) {
       console.error('Error deleting patient:', err);
@@ -65,24 +63,24 @@ onMounted(fetchPatients);
       <div v-else-if="error">{{ error }}</div>
       <table v-else>
         <thead>
-          <tr>
-            <th>Documento</th>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Acciones</th>
-          </tr>
+        <tr>
+          <th>Documento</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Acciones</th>
+        </tr>
         </thead>
         <tbody>
-          <tr v-for="patient in patients" :key="patient.legalID">
-            <td>{{ patient.legalID }}</td> <!-- Mostrar solo el Documento -->
-            <td>{{ patient.firstName }}</td>
-            <td>{{ patient.lastName }}</td>
-            <td>
-              <button class="action-btn view" @click="viewPatient(patient.legalID)">🔍</button>
-              <button class="action-btn update" @click="handleUpdatePatient(patient.legalID)">🔄</button>
-              <button class="action-btn delete" @click="handleDeletePatient(patient.legalID)">❌</button>
-            </td>
-          </tr>
+        <tr v-for="patient in patients" :key="patient.legalID">
+          <td>{{ patient.legalID }}</td> <!-- Mostrar solo el Documento -->
+          <td>{{ patient.firstName }}</td>
+          <td>{{ patient.lastName }}</td>
+          <td>
+            <button class="action-btn view" @click="viewPatient(patient.legalID)">🔍</button>
+            <button class="action-btn update" @click="handleUpdatePatient(patient.legalID)">🔄</button>
+            <button class="action-btn delete" @click="handleDeletePatient(patient.id)">❌</button>
+          </td>
+        </tr>
         </tbody>
       </table>
       <router-link to="/nuevo-paciente">
