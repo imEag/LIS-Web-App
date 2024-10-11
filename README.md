@@ -61,27 +61,32 @@ A web-based Laboratory Information Management System (LIMS) specifically designe
 
 ### Prerequisites
 - Node.js 18.16.0 or higher
-- MongoDB 5.5.0 or higher
-- Docker (optional)
+- MongoDB 7.0.0 or higher
+- MongoDB Compass or any other MongoDB management tool
 
 ### Installation Steps
 1. Clone the repository
 bash
 git clone https://github.com/yourusername/lipid-profile-lims.git
 
-2. Run the forntend
-bash
+2. Run the frontend
+```bash
 cd .\frontend\
 npm i
 npm run dev
+```
 
-3. Run the backend
+3. Run the backend in a new terminal window
 ```bash
-cd ..
 cd .\backend\
 npm i
 npm run dev
-``` 
+```
+
+4. Open your browser and navigate to http://localhost:8080
+
+### Optional: Seed the Database
+To populate the database with sample data, go to your mongoDB management tool (MongoDB Compass is recommended) and import the Json files from the /backend/DB_seeds folder.
 
 ## 🔐 Default Login Credentials
 For specialist access to the software, use the following pre-defined credentials:
